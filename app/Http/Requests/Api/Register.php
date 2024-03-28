@@ -24,10 +24,9 @@ class Register extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'primary_role_id' => 'required',
             'mobile' => 'required|min:10|unique:users',
             'email' => 'required|email:rfc|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
             /*'password' => [
                 'required',
                 'string',

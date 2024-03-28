@@ -37,15 +37,16 @@ class UserController extends Controller
         if($request->cookie('jwt')){
             \Cookie()->forget('jwt');
         }
-        $expiry=now()->addDays(7);
+        $expiry=now()->addDays(1);
         $jwt=$user->createToken('beareToken', ['*'], $expiry)->plainTextToken;
-        $cookie=cookie('jwt', $jwt,   60 * 24 * 7); // I week
+        //$cookie=cookie('jwt', $jwt,   60 * 24 * 7); // I week
         $resArr=[
             'status'=>true,
             'message'=>'Success',
-            //'token'=>$jwt
+            'token'=>$jwt
         ];
-        return response($resArr, Response::HTTP_OK)->withCookie($cookie);
+        return response($resArr, Response::HTTP_OK);
+        //return response($resArr, Response::HTTP_OK)->withCookie($cookie);
     }
 
     function UserProfile(Request $request) {
@@ -67,6 +68,7 @@ class UserController extends Controller
             'message'=>'Success',
             'data'=>$request->user
         ];
-        return response($resArr, Response::HTTP_OK)->withCookie($cookie);
+       return response($resArr, Response::HTTP_OK)->withCookie($cookie);
+        //return response($resArr, Response::HTTP_OK);
     }
 }

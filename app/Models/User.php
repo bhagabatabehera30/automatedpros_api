@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Api\UserRole;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -35,8 +34,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
-
-    function userPrimaryRole(): BelongsTo {
-        return $this->belongsTo(UserRole::class, 'primary_role_id','id');
-    }
 }
